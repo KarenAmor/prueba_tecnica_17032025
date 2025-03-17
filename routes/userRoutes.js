@@ -39,42 +39,54 @@ router.get('/usuarios/buscar', async (req, res) => {
 
 // Obtener un usuario por ID
 router.get('/usuarios/:id', async (req, res) => {
-  try {
-    const user = await User.findById(req.params.id);
-    if (!user) {
-      return res.status(404).send();
+    try {
+      const user = await User.findById(req.params.id);
+      if (!user) {
+        return res.status(404).send({ message: 'Usuario no encontrado' }); // Mensaje personalizado
+      }
+      res.send(user);
+    } catch (error) {
+      res.status(500).send({ message: 'Error al buscar el usuario', error: error.message }); // Mensaje de error detallado
     }
-    res.send(user);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
+  });
 
 // Actualizar un usuario por ID
 router.put('/usuarios/:id', async (req, res) => {
-  try {
-    const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!user) {
-      return res.status(404).send();
+    try {
+      const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
+      if (!user) {
+        return res.status(404).send({ message: 'Usuario no encontrado' });
+      }
+  
+      // Agrega un mensaje a la respuesta
+      const response = {
+        ...user.toObject(), // Convierte el documento de Mongoose a un objeto plano
+        mensaje: 'Usuario modificado correctamente', // Mensaje adicional
+      };
+  
+      res.send(response);
+    } catch (error) {
+      res.status(400).send({ message: 'Error al actualizar el usuario', error: error.message });
     }
-    res.send(user);
-  } catch (error) {
-    res.status(400).send(error);
-  }
-});
+  });
 
 // Eliminar un usuario por ID
 router.delete('/usuarios/:id', async (req, res) => {
-  try {
-    const user = await User.findByIdAndDelete(req.params.id);
-    if (!user) {
-      return res.status(404).send();
+    try {
+      const user = await User.findByIdAndDelete(req.params.id);
+      if (!user) {
+        return res.status(404).send({ message: 'Usuario no encontrado' });
+      }
+  
+      // Devuelve un mensaje de éxito junto con el usuario eliminado
+      res.send({
+        message: 'Usuario eliminado correctamente',
+        usuario: user, // Opcional: incluir el usuario eliminado en la respuesta
+      });
+    } catch (error) {
+      res.status(500).send({ message: 'Error al eliminar el usuario', error: error.message });
     }
-    res.send(user);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
+  });
 
 
 
