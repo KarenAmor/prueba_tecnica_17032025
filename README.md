@@ -9,6 +9,7 @@ Antes de comenzar, asegúrate de tener instalado lo siguiente:
 - [Node.js](https://nodejs.org/) (v16 o superior)
 - [MongoDB](https://www.mongodb.com/) (local o una instancia en la nube como MongoDB Atlas)
 - [Git](https://git-scm.com/) (opcional, para clonar el repositorio)
+- [Swagger]: Para la documentación interactiva de la API.
 
 ## Configuración del Proyecto
 
@@ -43,7 +44,12 @@ Antes de comenzar, asegúrate de tener instalado lo siguiente:
    npm start
    ```
 
-   El servidor estará disponible en `http://localhost:3000`.
+   El servidor estará disponible en las siguientes direcciones:
+   ### Localmente 
+   `http://localhost:3000`, y a documentación en `http://localhost:3000/api-docs`
+
+   ### En Render
+   `https://prueba-tecnica-17032025.onrender.com`, y la documentacion en `https://prueba-tecnica-17032025.onrender.com/api-docs/`
 
 ## Estructura del Proyecto
 
