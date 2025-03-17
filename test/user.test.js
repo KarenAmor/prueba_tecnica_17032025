@@ -2,12 +2,12 @@ require('dotenv').config();
 const chai = require('chai');
 const { expect } = chai;
 const mongoose = require('mongoose');
-const User = require('../models/User'); // Asegúrate de que la ruta sea correcta
+const User = require('../models/User'); 
 
 before(async function () {
     this.timeout(10000);
     try {
-        console.log('Connecting to MongoDB:', process.env.MONGO_URI); // Verifica que la URI no sea undefined
+        console.log('Connecting to MongoDB:', process.env.MONGO_URI); 
         await mongoose.connect(process.env.MONGO_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
@@ -26,7 +26,7 @@ afterEach(async () => {
 
 // Desconecta de la base de datos después de todas las pruebas
 after(async function () {
-  this.timeout(10000); // Aumenta el tiempo de espera a 10000 ms (10 segundos)
+  this.timeout(10000); 
   await mongoose.connection.close();
   console.log('MongoDB connection closed');
 });
@@ -102,6 +102,6 @@ describe('User Model', () => {
 
     // Verifica que se lance un error de duplicación
     expect(error).to.exist;
-    expect(error.code).to.equal(11000); // Código de error de MongoDB para duplicados
+    expect(error.code).to.equal(11000); 
   });
 });

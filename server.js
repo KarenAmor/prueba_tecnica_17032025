@@ -23,12 +23,12 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: 'http://localhost:3000', // Cambia esto según tu entorno
+        url: 'http://localhost:3000', 
         description: 'Servidor local',
       },
     ],
   },
-  apis: ['./routes/*.js'], // Ruta a los archivos donde están tus rutas
+  apis: ['./routes/*.js'], 
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
@@ -48,5 +48,5 @@ app.use(userRoutes);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
-  console.log(`Documentación de la API en http://localhost:${port}/api-docs`); // Usa "port" en lugar de "PORT"
+  console.log(`Documentación de la API en http://localhost:${port}/api-docs`); 
 });

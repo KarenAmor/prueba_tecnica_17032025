@@ -232,8 +232,8 @@ router.put('/usuarios/:id', async (req, res) => {
 
     // Agrega un mensaje a la respuesta
     const response = {
-      ...user.toObject(), // Convierte el documento de Mongoose a un objeto plano
-      mensaje: 'Usuario modificado correctamente', // Mensaje adicional
+      ...user.toObject(), 
+      mensaje: 'Usuario modificado correctamente', 
     };
 
     res.send(response);
@@ -277,7 +277,7 @@ router.delete('/usuarios/:id', async (req, res) => {
     // Devuelve un mensaje de éxito junto con el usuario eliminado
     res.send({
       message: 'Usuario eliminado correctamente',
-      usuario: user, // Opcional: incluir el usuario eliminado en la respuesta
+      usuario: user, 
     });
   } catch (error) {
     res.status(500).send({ message: 'Error al eliminar el usuario', error: error.message });
